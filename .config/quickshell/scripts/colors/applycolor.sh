@@ -42,12 +42,35 @@ apply_term() {
 
   sed -i "s/\$alpha/$term_alpha/g" "$STATE_DIR/user/generated/terminal/sequences.txt"
 
-  for file in /dev/pts/*; do
-    if [[ $file =~ ^/dev/pts/[0-9]+$ ]]; then
-      {
-      cat "$STATE_DIR"/user/generated/terminal/sequences.txt >"$file"
-      } & disown || true
-    fi
+  # List of known "pure" terminal emulator names (case-insensitive match)
+  PURE_TERMINALS="kitty|foot|gnome-terminal|alacritty|xterm|konsole|rxvt|wezterm|uxterm"
+
+  for pts in /dev/pts/[0-9]*; do
+      ptsnum=$(basename "$pts")
+
+      # Get PID(s) associated with this TTY
+      pids=$(ps -t "pts/$ptsnum" -o pid= | awk '{print $1}')
+
+      for pid in $pids; do
+          # Walk the process tree upward from this PID
+          current=$pid
+          while [ -n "$current" ] && [ "$current" -ne 1 ]; do
+              # Get command name for this PID
+              cmd=$(ps -p "$current" -o comm= 2>/dev/null)
+
+              # Check if it matches a pure terminal
+              if echo "$cmd" | grep -Eiq "$PURE_TERMINALS"; then
+                  echo "Found pure terminal '$cmd' on $pts — sending escape sequences"
+                  {
+                  cat "$STATE_DIR"/user/generated/terminal/sequences.txt >"$pts"
+                  } & disown || true
+                  break
+              fi
+
+              # Move to parent PID
+              current=$(ps -p "$current" -o ppid= 2>/dev/null | awk '{print $1}')
+          done
+      done
   done
 }
 

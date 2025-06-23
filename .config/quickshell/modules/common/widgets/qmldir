@@ -2,6 +2,7 @@ CliphistImage CliphistImage.qml
 GroupButton GroupButton.qml
 RippleButtonWithIcon RippleButtonWithIcon.qml
 SelectionGroupButton SelectionGroupButton.qml
+StyledSpinBox StyledSpinBox.qml
 VerticalButtonGroup VerticalButtonGroup.qml
 StyledToolTip StyledToolTip.qml
 StyledProgressBar StyledProgressBar.qml
@@ -34,12 +35,14 @@ NotificationAppIcon NotificationAppIcon.qml
 ContentSection ContentSection.qml
 NavigationRailExpandButton NavigationRailExpandButton.qml
 NotificationItem NotificationItem.qml
+StyledTextInput StyledTextInput.qml
 ConfigSwitch ConfigSwitch.qml
 LightDarkPreferenceButton LightDarkPreferenceButton.qml
 StyledListView StyledListView.qml
 Revealer Revealer.qml
 RoundCorner RoundCorner.qml
 PrimaryTabButton PrimaryTabButton.qml
+ConfigSpinBox ConfigSpinBox.qml
 ContentPage ContentPage.qml
 ConfigRow ConfigRow.qml
 Favicon Favicon.qml

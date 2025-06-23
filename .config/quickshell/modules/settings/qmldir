@@ -1,3 +1,4 @@
-GeneralConfig GeneralConfig.qml
+ServicesConfig ServicesConfig.qml
 About About.qml
 StyleConfig StyleConfig.qml
+InterfaceConfig InterfaceConfig.qml

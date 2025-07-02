@@ -3,3 +3,4 @@ shell shell.qml
 ReloadPopup ReloadPopup.qml
 settings settings.qml
 singleton GlobalStates GlobalStates.qml
+screenshot screenshot.qml

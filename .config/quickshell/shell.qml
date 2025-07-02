@@ -35,7 +35,7 @@ ShellRoot {
     property bool enableDock: true
     property bool enableMediaControls: true
     property bool enableNotificationPopup: true
-    property bool enableOnScreenDisplayBrightness: true
+    property bool enableOnScreenDisplayBrightness: false
     property bool enableOnScreenDisplayVolume: true
     property bool enableOnScreenKeyboard: true
     property bool enableOverview: true

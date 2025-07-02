@@ -508,7 +508,7 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
                             font.pixelSize: Appearance.font.pixelSize.small
                             color: Appearance.m3colors.m3onSurface
                             elide: Text.ElideRight
-                            text: Ai.getModel().name
+                            text: Ai.getModel() ? Ai.getModel().name : qsTr("No model")
                         }
                     }
                     StyledToolTip {
@@ -516,7 +516,8 @@ Inline w/ backslash and round brackets \\(e^{i\\pi} + 1 = 0\\)
                         extraVisibleCondition: false
                         alternativeVisibleCondition: mouseArea.containsMouse // Show tooltip when hovered
                         content: StringUtils.format(qsTr("Current model: {0}\nSet it with {1}model MODEL"), 
-                            Ai.getModel().name, root.commandPrefix)
+                            Ai.getModel() ? Ai.getModel().name : qsTr("No model"),
+                            root.commandPrefix)
                     }
 
                     MouseArea {

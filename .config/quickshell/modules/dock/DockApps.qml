@@ -146,6 +146,9 @@ Item {
             implicitHeight: root.maxWindowPreviewHeight + root.windowControlsHeight + Appearance.sizes.elevationMargin * 2
             hoverEnabled: true
             x: {
+                    if (!root.lastHoveredButton || !root.lastHoveredButton.window) {
+                        return 0; // or a sensible default
+                    }
                 const itemCenter = root.QsWindow?.mapFromItem(root.lastHoveredButton, root.lastHoveredButton?.width / 2, 0);
                 return itemCenter.x - width / 2
             }

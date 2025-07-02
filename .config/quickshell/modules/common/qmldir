@@ -1,4 +1,5 @@
+singleton Persistent Persistent.qml
 singleton Directories Directories.qml
-singleton ConfigOptions ConfigOptions.qml
 singleton PersistentStates PersistentStates.qml
 singleton Appearance Appearance.qml
+singleton Config Config.qml

@@ -1,4 +1,5 @@
 SidebarLeftContent SidebarLeftContent.qml
+DescriptionBox DescriptionBox.qml
 ApiCommandButton ApiCommandButton.qml
 Translator Translator.qml
 Anime Anime.qml

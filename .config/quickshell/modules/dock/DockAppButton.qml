@@ -76,6 +76,8 @@ DockButton {
         active: !isSeparator
         sourceComponent: Item {
             anchors.centerIn: parent
+            // width: parent.width
+            // height: parent.height
 
             Loader {
                 id: iconImageLoader

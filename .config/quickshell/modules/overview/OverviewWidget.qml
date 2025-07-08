@@ -63,8 +63,6 @@ Item {
         implicitHeight: workspaceColumnLayout.implicitHeight + padding * 2
         radius: Appearance.rounding.screenRounding * root.scale + padding
         color: Appearance.colors.colLayer0
-        border.width: 1
-        border.color: Appearance.m3colors.m3outlineVariant
 
         ColumnLayout { // Workspaces
             id: workspaceColumnLayout
@@ -150,10 +148,9 @@ Item {
                         // console.log(JSON.stringify(ToplevelManager.toplevels.values.map(t => t), null, 2))
                         return ToplevelManager.toplevels.values.filter((toplevel) => {
                             const address = `0x${toplevel.HyprlandToplevel.address}`
+                            // console.log(`Checking window with address: ${address}`)
                             var win = windowByAddress[address]
-                            const inWorkspaceGroup = (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
-                            const inMonitor = root.monitor.id === win.monitor
-                            return inWorkspaceGroup && inMonitor;
+                            return (root.workspaceGroup * root.workspacesShown < win?.workspace?.id && win?.workspace?.id <= (root.workspaceGroup + 1) * root.workspacesShown)
                         })
                     }
                 }

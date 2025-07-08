@@ -158,10 +158,10 @@ function cleanMusicTitle(title) {
     // Japenis brackets
     title = title.replace(/^ *【[^】]*】/, "") // Touhou
     title = title.replace(/^ *《[^》]*》/, "") // ??
-    title = title.replace(/^ *「[^」]*」/, "") // OP/ED thingie
-    title = title.replace(/^ *『[^』]*』/, "") // OP/ED thingie
+    title = title.replace(/^ *「[^」]*」/, "") // OP/ED
+    title = title.replace(/^ *『[^』]*』/, "") // OP/ED
 
-    return title.trim();
+    return title;
 }
 
 function friendlyTimeForSeconds(seconds) {

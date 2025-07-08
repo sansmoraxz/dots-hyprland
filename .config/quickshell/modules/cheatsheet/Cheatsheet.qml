@@ -64,8 +64,6 @@ Scope { // Scope
                 id: cheatsheetBackground
                 anchors.centerIn: parent
                 color: Appearance.colors.colLayer0
-                border.width: 1
-                border.color: Appearance.m3colors.m3outlineVariant
                 radius: Appearance.rounding.windowRounding
                 property real padding: 30
                 implicitWidth: cheatsheetColumnLayout.implicitWidth + padding * 2

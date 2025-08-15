@@ -147,7 +147,7 @@ Item { // Bar content region
                         anchors.centerIn: parent
                         width: 19.5
                         height: 19.5
-                        source: Config.options.bar.topLeftIcon == 'distro' ? SystemInfo.distroIcon : "spark-symbolic"
+                        source: Config.options.bar.topLeftIcon == 'distro' ? SystemInfo.distroIcon : `${Config.options.bar.topLeftIcon}-symbolic`
                         colorize: true
                         color: Appearance.colors.colOnLayer0
                     }
@@ -166,7 +166,7 @@ Item { // Bar content region
     RowLayout { // Middle section
         id: middleSection
         anchors.centerIn: parent
-        spacing: Config.options?.bar.borderless ? 4 : 8
+        spacing: 4
 
         BarGroup {
             id: leftCenterGroup
@@ -245,10 +245,6 @@ Item { // Bar content region
                     Layout.alignment: Qt.AlignVCenter
                 }
             }
-        }
-
-        VerticalBarSeparator {
-            visible: Config.options.bar.borderless && Config.options.bar.weather.enable
         }
     }
 

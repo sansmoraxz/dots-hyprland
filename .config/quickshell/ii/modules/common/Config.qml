@@ -143,6 +143,7 @@ Singleton {
                 property string topLeftIcon: "spark" // Options: "distro" or any icon name in ~/.config/quickshell/ii/assets/icons
                 property bool showBackground: true
                 property bool verbose: true
+                property bool vertical: false
                 property JsonObject resources: JsonObject {
                     property bool alwaysShowSwap: true
                     property bool alwaysShowCpu: false
@@ -279,6 +280,7 @@ Singleton {
             property JsonObject time: JsonObject {
                 // https://doc.qt.io/qt-6/qtime.html#toString
                 property string format: "hh:mm"
+                property string shortDateFormat: "dd/MM"
                 property string dateFormat: "ddd, dd/MM"
                 property JsonObject pomodoro: JsonObject {
                     property string alertSound: ""

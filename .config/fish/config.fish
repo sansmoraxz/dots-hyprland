@@ -1,3 +1,15 @@
+function is_embedded_terminal
+    set pid $fish_pid
+    while test $pid -ne 1
+        set pinfo (ps -p $pid -o comm=)
+        if string match -q -r 'code|jetbrains|idea|atom|emacs|nvim' $pinfo
+            return 0
+        end
+        set pid (ps -p $pid -o ppid= | string trim)
+    end
+    return 1
+end
+
 function fish_prompt -d "Write out the prompt"
     # This shows up as USER@HOST /home/user/ >, with the directory colored
     # $USER and $hostname are set by fish, so you can just use them
@@ -14,7 +26,9 @@ end
 
 starship init fish | source
 if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
-    cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+    if not is_embedded_terminal
+        cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+    end
 end
 
 alias pamcan pacman

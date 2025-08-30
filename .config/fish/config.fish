@@ -37,6 +37,9 @@ alias clear "printf '\033[2J\033[3J\033[1;1H'"
 alias q 'qs -c ii'
     
 
+alias ansi 'echo -ne "\033]104\007"'
+alias theme 'cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt'
+
 # function fish_prompt
 #   set_color cyan; echo (pwd)
 #   set_color green; echo '> '

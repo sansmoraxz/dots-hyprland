@@ -43,12 +43,39 @@ apply_term() {
 
   sed -i "s/\$alpha/$term_alpha/g" "$STATE_DIR/user/generated/terminal/sequences.txt"
 
+  PURE_TERMINALS="kitty|foot|gnome-terminal|alacritty|xterm|konsole|rxvt|wezterm|uxterm"
+
   for file in /dev/pts/*; do
-    if [[ $file =~ ^/dev/pts/[0-9]+$ ]]; then
-      {
-      cat "$STATE_DIR"/user/generated/terminal/sequences.txt >"$file"
-      } & disown || true
-    fi
+      ptsnum=$(basename "$file")
+
+      # Get PID(s) associated with this TTY
+      pids=$(ps -t "pts/$ptsnum" -o pid= | awk '{print $1}')
+      echo "Checking $file (PID(s): $pids)"
+      if [ -z "$pids" ]; then
+        # No processes attached to this file
+        continue
+      fi
+
+      for pid in $pids; do
+          # Walk the process tree upward from this PID
+          current=$pid
+          while [ -n "$current" ] && [ "$current" -ne 1 ]; do
+              # Get command name for this PID
+              cmd=$(ps -p "$current" -o comm= 2>/dev/null)
+
+              # Check if it matches a pure terminal
+              if echo "$cmd" | grep -Eiq "$PURE_TERMINALS"; then
+                  echo "Found pure terminal '$cmd' on $file — sending sequences.txt"
+                  {
+                    cat "$STATE_DIR"/user/generated/terminal/sequences.txt > "$file"
+                  } & disown || true
+                  break
+              fi
+
+              # Move to parent PID
+              current=$(ps -p "$current" -o ppid= 2>/dev/null | awk '{print $1}')
+          done
+      done
   done
 }
 

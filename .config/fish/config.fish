@@ -18,11 +18,16 @@ function fish_prompt -d "Write out the prompt"
         (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
 end
 
-if status is-interactive
-    # Commands to run in interactive sessions can go here
+if status is-interactive # Commands to run in interactive sessions can go here
+
+    # No greeting
     set fish_greeting
 
-end
+    # Use starship
+    starship init fish | source
+    if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+        cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+    end
 
 starship init fish | source
 if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
@@ -39,8 +44,4 @@ alias q 'qs -c ii'
 
 alias ansi 'echo -ne "\033]104\007"'
 alias theme 'cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt'
-
-# function fish_prompt
-#   set_color cyan; echo (pwd)
-#   set_color green; echo '> '
-# end
+end

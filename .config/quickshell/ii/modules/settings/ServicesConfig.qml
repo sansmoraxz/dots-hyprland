@@ -47,6 +47,7 @@ ContentPage {
         title: Translation.tr("Resources")
 
         ConfigSpinBox {
+            icon: "av_timer"
             text: Translation.tr("Polling interval (ms)")
             value: Config.options.resources.updateInterval
             from: 100
@@ -69,7 +70,7 @@ ContentPage {
                 Config.options.search.sloppy = checked;
             }
             StyledToolTip {
-                content: Translation.tr("Could be better if you make a ton of typos,\nbut results can be weird and might not work with acronyms\n(e.g. \"GIMP\" might not give you the paint program)")
+                text: Translation.tr("Could be better if you make a ton of typos,\nbut results can be weird and might not work with acronyms\n(e.g. \"GIMP\" might not give you the paint program)")
             }
         }
 

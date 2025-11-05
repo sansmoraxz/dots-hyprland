@@ -5,11 +5,11 @@ import qs.modules.common.widgets
 import qs.services
 import QtQuick
 import QtQuick.Controls
+import Qt.labs.synchronizer
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Hyprland
-import Qt.labs.synchronizer
 
 PanelWindow {
     id: root
@@ -17,7 +17,7 @@ PanelWindow {
     color: "transparent"
     WlrLayershell.namespace: "quickshell:regionSelector"
     WlrLayershell.layer: WlrLayer.Overlay
-    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
     exclusionMode: ExclusionMode.Ignore
     anchors {
         left: true
